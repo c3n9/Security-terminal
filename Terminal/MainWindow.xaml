@@ -1,0 +1,38 @@
+﻿<Window x:Class="Terminal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Terminal"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/images/Logo.png"
+                   Width="80"
+                   Margin="10,5,10,0"/>
+            <TextBlock Text="Стражник - версия для работников"
+                       FontSize="26"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"/>
+        </StackPanel>
+        <Button HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Height="20"
+                Width="60"
+                Content="Back"
+                Margin="0,0,10,0"
+                BorderThickness="2"
+                BorderBrush="#ff9619"
+                Background="white"
+                x:Name="BBack"
+                Click="BBack_Click"/>
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden"
+               Grid.Row="1"/>
+    </Grid>
+</Window>

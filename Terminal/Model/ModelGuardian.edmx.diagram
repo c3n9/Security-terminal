@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="55f7a10411664f178f59d33cb59b640f" Name="Diagram1">
+        <EntityTypeShape EntityType="GuardianModel.Department" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="GuardianModel.Employee" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="GuardianModel.Pass" Width="1.5" PointX="5.25" PointY="2.25" />
+        <EntityTypeShape EntityType="GuardianModel.PassDocument" Width="1.5" PointX="7.5" PointY="3.875" />
+        <EntityTypeShape EntityType="GuardianModel.PassStatus" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="GuardianModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="6.875" />
+        <EntityTypeShape EntityType="GuardianModel.User" Width="1.5" PointX="3" PointY="7.125" />
+        <AssociationConnector Association="GuardianModel.FK_Employee_Department" />
+        <AssociationConnector Association="GuardianModel.FK_Pass_Employee" />
+        <AssociationConnector Association="GuardianModel.FK_Pass_PassStatus" />
+        <AssociationConnector Association="GuardianModel.FK_Pass_User" />
+        <AssociationConnector Association="GuardianModel.FK_PassDocument_Pass" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

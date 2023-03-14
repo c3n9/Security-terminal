@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuardianModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GuardianEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Department" EntityType="GuardianModel.Department" />
+    <EntitySet Name="Employee" EntityType="GuardianModel.Employee" />
+    <EntitySet Name="Pass" EntityType="GuardianModel.Pass" />
+    <EntitySet Name="PassDocument" EntityType="GuardianModel.PassDocument" />
+    <EntitySet Name="PassStatus" EntityType="GuardianModel.PassStatus" />
+    <EntitySet Name="sysdiagrams" EntityType="GuardianModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="GuardianModel.User" />
+    <AssociationSet Name="FK_Employee_Department" Association="GuardianModel.FK_Employee_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pass_Employee" Association="GuardianModel.FK_Pass_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Pass" EntitySet="Pass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pass_PassStatus" Association="GuardianModel.FK_Pass_PassStatus">
+      <End Role="PassStatus" EntitySet="PassStatus" />
+      <End Role="Pass" EntitySet="Pass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pass_User" Association="GuardianModel.FK_Pass_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Pass" EntitySet="Pass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PassDocument_Pass" Association="GuardianModel.FK_PassDocument_Pass">
+      <End Role="Pass" EntitySet="Pass" />
+      <End Role="PassDocument" EntitySet="PassDocument" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="GuardianModel.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Department" Relationship="GuardianModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="Pass" Relationship="GuardianModel.FK_Pass_Employee" FromRole="Employee" ToRole="Pass" />
+  </EntityType>
+  <EntityType Name="Pass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patromic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="PassportSeria" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="PassportNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="VisitPurpose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassStatusId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="GuardianModel.FK_Pass_Employee" FromRole="Pass" ToRole="Employee" />
+    <NavigationProperty Name="PassStatus" Relationship="GuardianModel.FK_Pass_PassStatus" FromRole="Pass" ToRole="PassStatus" />
+    <NavigationProperty Name="User" Relationship="GuardianModel.FK_Pass_User" FromRole="Pass" ToRole="User" />
+    <NavigationProperty Name="PassDocument" Relationship="GuardianModel.FK_PassDocument_Pass" FromRole="Pass" ToRole="PassDocument" />
+  </EntityType>
+  <EntityType Name="PassDocument">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentFile" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="PassId" Type="Int32" />
+    <NavigationProperty Name="Pass" Relationship="GuardianModel.FK_PassDocument_Pass" FromRole="PassDocument" ToRole="Pass" />
+  </EntityType>
+  <EntityType Name="PassStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pass" Relationship="GuardianModel.FK_Pass_PassStatus" FromRole="PassStatus" ToRole="Pass" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pass" Relationship="GuardianModel.FK_Pass_User" FromRole="User" ToRole="Pass" />
+  </EntityType>
+  <Association Name="FK_Employee_Department">
+    <End Type="GuardianModel.Department" Role="Department" Multiplicity="1" />
+    <End Type="GuardianModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pass_Employee">
+    <End Type="GuardianModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="GuardianModel.Pass" Role="Pass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pass">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pass_PassStatus">
+    <End Type="GuardianModel.PassStatus" Role="PassStatus" Multiplicity="1" />
+    <End Type="GuardianModel.Pass" Role="Pass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pass">
+        <PropertyRef Name="PassStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pass_User">
+    <End Type="GuardianModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="GuardianModel.Pass" Role="Pass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pass">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PassDocument_Pass">
+    <End Type="GuardianModel.Pass" Role="Pass" Multiplicity="0..1" />
+    <End Type="GuardianModel.PassDocument" Role="PassDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pass">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PassDocument">
+        <PropertyRef Name="PassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
