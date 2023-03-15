@@ -22,13 +22,15 @@ namespace Terminal.Pages
     /// </summary>
     public partial class PApprovalOfPasses : Page
     {
-        int indexEmployee;
-        public PApprovalOfPasses(int employee)
+        Employee contextEmployee;
+        public PApprovalOfPasses(Employee employee)
         {
             InitializeComponent();
-            Refresh();
+            contextEmployee = employee;
             CBStatus.ItemsSource = App.DB.PassStatus.ToList();
-            indexEmployee = employee;
+            CBStatusForFilter.ItemsSource = App.DB.PassStatus.ToList();
+            CBDepartment.ItemsSource = App.DB.Department.ToList();
+            Refresh();
         }
 
         private void BSave_Click(object sender, RoutedEventArgs e)
@@ -45,12 +47,31 @@ namespace Terminal.Pages
         }
         private void Refresh()
         {
-            DGGuests.ItemsSource = App.DB.Pass.Where(p => p.EmployeeId == indexEmployee).ToList();
+            int index = contextEmployee.Id;
+            DGGuests.ItemsSource = App.DB.Pass.ToList();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Refresh();
+        }
+
+        private void BFilter_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedDepartment = CBDepartment.SelectedItem as Department;
+            var selectedStatus = CBStatusForFilter.SelectedItem as PassStatus;
+            if (selectedDepartment != null && selectedStatus == null)
+            {
+                DGGuests.ItemsSource = App.DB.Pass.Where(g => g.Employee.DepartmentId == selectedDepartment.Id).ToList();
+            }
+            else if (selectedStatus !=null && selectedDepartment == null)
+            {
+                DGGuests.ItemsSource = App.DB.Pass.Where(g => g.PassStatus.Id == selectedStatus.Id).ToList();
+            }
+            else if (selectedDepartment != null && selectedStatus != null)
+            {
+                DGGuests.ItemsSource = App.DB.Pass.Where(g => g.Employee.DepartmentId == selectedDepartment.Id && g.PassStatus.Id == selectedStatus.Id).ToList();
+            }
         }
     }
 }

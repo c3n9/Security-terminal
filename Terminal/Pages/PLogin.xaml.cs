@@ -29,12 +29,13 @@ namespace Terminal.Pages
         private void BLogin_Click(object sender, RoutedEventArgs e)
         {
             var employee = App.DB.Employee.FirstOrDefault(c => c.Code == TBCodeEmployee.Text);
-            if (employee == null) 
+            if (employee == null)
             {
                 MessageBox.Show("Неверный код");
                 return;
             }
-            NavigationService.Navigate(new PApprovalOfPasses(employee.Id));
+            if(employee.DepartmentId == 6)
+                NavigationService.Navigate(new PApprovalOfPasses(employee));
         }
     }
 }

@@ -18,6 +18,7 @@
                     Margin="0,0,0,10">
                 <TextBlock Text="Вход в систему по коду"
                            HorizontalAlignment="Center"/>
+
             </Border>
             <TextBox x:Name="TBCodeEmployee"/>
             <Button x:Name="BLogin"
@@ -28,6 +29,7 @@
                     BorderThickness="2"
                     Width="240"
                     Margin="0,10,0,0"/>
+            
         </StackPanel>
     </Grid>
 </Page>

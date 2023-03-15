@@ -11,11 +11,25 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox x:Name="CBDepartment"
+                      DisplayMemberPath="Name"/>
+            <ComboBox x:Name="CBStatusForFilter"
+                      DisplayMemberPath="Name"/>
+            <Button x:Name="BFilter"
+                    Content="Фильтровать"
+                    Click="BFilter_Click"
+                    Background="white"
+                    BorderBrush="#FF9619"
+                    BorderThickness="2"/>
+        </StackPanel>
         <DataGrid x:Name="DGGuests"
                   IsReadOnly="True"
+                  Grid.Row="1"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Фамилия"
@@ -42,7 +56,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image Source="{Binding Photo}"
-                                   Width="20"/>
+                                   Width="60"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -54,11 +68,13 @@
                                     Binding="{Binding VisitPurpose}"/>
                 <DataGridTextColumn Header="Статус"
                                     Binding="{Binding PassStatus.Name}"/>
+                <DataGridTextColumn Header="Подразделение"
+                                    Binding="{Binding Employee.Department.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="2">
             <ComboBox x:Name="CBStatus"
-                                      DisplayMemberPath="Name"/>
+                      DisplayMemberPath="Name"/>
             <Button x:Name="BSave"
                                     Content="Сохранить"
                                     Click="BSave_Click"/>
