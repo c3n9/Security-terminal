@@ -34,7 +34,7 @@ namespace Terminal.Pages
                 MessageBox.Show("Неверный код");
                 return;
             }
-            if(employee.DepartmentId == 6)
+            if(employee.DepartmentId == 6 || employee.DepartmentId == 7)
                 NavigationService.Navigate(new PApprovalOfPasses(employee));
         }
     }

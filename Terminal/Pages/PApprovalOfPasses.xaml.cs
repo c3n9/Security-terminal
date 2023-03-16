@@ -27,9 +27,19 @@ namespace Terminal.Pages
         {
             InitializeComponent();
             contextEmployee = employee;
-            CBStatus.ItemsSource = App.DB.PassStatus.ToList();
-            CBStatusForFilter.ItemsSource = App.DB.PassStatus.ToList();
-            CBDepartment.ItemsSource = App.DB.Department.ToList();
+            if(contextEmployee.DepartmentId == 6)
+            {
+                CBStatus.ItemsSource = App.DB.PassStatus.ToList();
+                CBStatusForFilter.ItemsSource = App.DB.PassStatus.ToList();
+                CBDepartment.ItemsSource = App.DB.Department.ToList();
+            }
+            if(contextEmployee.DepartmentId == 7)
+            {
+                CBDepartment.ItemsSource = App.DB.Department.ToList();
+                CBStatus.Visibility = Visibility.Collapsed;
+                BSave.Visibility = Visibility.Collapsed;
+                CBStatusForFilter.Visibility = Visibility.Collapsed;
+            }
             Refresh();
         }
 
@@ -47,8 +57,10 @@ namespace Terminal.Pages
         }
         private void Refresh()
         {
-            int index = contextEmployee.Id;
-            DGGuests.ItemsSource = App.DB.Pass.ToList();
+            if (contextEmployee.DepartmentId == 7)
+                DGGuests.ItemsSource = App.DB.Pass.Where(g => g.PassStatus.Id == 2).ToList();
+            else
+                DGGuests.ItemsSource = App.DB.Pass.ToList();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -62,7 +74,11 @@ namespace Terminal.Pages
             var selectedStatus = CBStatusForFilter.SelectedItem as PassStatus;
             if (selectedDepartment != null && selectedStatus == null)
             {
-                DGGuests.ItemsSource = App.DB.Pass.Where(g => g.Employee.DepartmentId == selectedDepartment.Id).ToList();
+                if (contextEmployee.DepartmentId == 7)
+                    DGGuests.ItemsSource = App.DB.Pass.Where(g => g.Employee.DepartmentId == selectedDepartment.Id && g.PassStatus.Id == 2).ToList();
+                else
+                    DGGuests.ItemsSource = App.DB.Pass.Where(g => g.Employee.DepartmentId == selectedDepartment.Id).ToList();
+
             }
             else if (selectedStatus !=null && selectedDepartment == null)
             {
