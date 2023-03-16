@@ -107,6 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelGuardian.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Partials\Pass.cs" />
     <Compile Include="Model\Pass.cs">
       <DependentUpon>ModelGuardian.tt</DependentUpon>
     </Compile>

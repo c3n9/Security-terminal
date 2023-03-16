@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PApprovalOfPasses"
-      Loaded="Page_Loaded">
+      Loaded="Page_Loaded"  >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,10 +16,14 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Отделы"/>
             <ComboBox x:Name="CBDepartment"
-                      DisplayMemberPath="Name"/>
+                      DisplayMemberPath="Name" Width="200" SelectionChanged="CBDepartment_SelectionChanged"/>
+            <TextBlock Text="Статусы"/>
             <ComboBox x:Name="CBStatusForFilter"
-                      DisplayMemberPath="Name"/>
+                      DisplayMemberPath="Name" Width="200" SelectionChanged="CBStatusForFilter_SelectionChanged"/>
+            <TextBlock Text="Поиск"/>
+            <TextBox x:Name="TBSearch" Width="200" TextChanged="TBSearch_TextChanged"/>
             <Button x:Name="BFilter"
                     Content="Фильтровать"
                     Click="BFilter_Click"
