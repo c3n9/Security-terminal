@@ -19,17 +19,12 @@
             <TextBlock Text="Отделы"/>
             <ComboBox x:Name="CBDepartment"
                       DisplayMemberPath="Name" Width="200" SelectionChanged="CBDepartment_SelectionChanged"/>
-            <TextBlock Text="Статусы"/>
+            <TextBlock Text="Статусы"
+                       x:Name="TBStatusForFilter"/>
             <ComboBox x:Name="CBStatusForFilter"
                       DisplayMemberPath="Name" Width="200" SelectionChanged="CBStatusForFilter_SelectionChanged"/>
             <TextBlock Text="Поиск"/>
             <TextBox x:Name="TBSearch" Width="200" TextChanged="TBSearch_TextChanged"/>
-            <Button x:Name="BFilter"
-                    Content="Фильтровать"
-                    Click="BFilter_Click"
-                    Background="white"
-                    BorderBrush="#FF9619"
-                    BorderThickness="2"/>
         </StackPanel>
         <DataGrid x:Name="DGGuests"
                   IsReadOnly="True"
