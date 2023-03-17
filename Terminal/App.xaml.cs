@@ -16,6 +16,7 @@ namespace Terminal
     {
         public static GuardianEntities DB = new GuardianEntities();
         public static Employee LoggedEmployee;
+        public static MainWindow MainWindowInstance;
 
     }
 }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\obj\Debug\
+C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\Debug\
 Terminal
 none
 false
 DEBUG;TRACE
-C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\App.xaml
-4-1870747906
+C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\App.xaml
+5840792531
 2809586783
-20-2027052326
-181505886101
-AppWindows\PassEnterWindow.xaml;MainWindow.xaml;Pages\PApprovalOfPasses.xaml;Pages\PLogin.xaml;
+21-1545756539
+18-1152014389
+AppWindows\PassEnterWindow.xaml;AppWindows\PassExitWindow.xaml;MainWindow.xaml;Pages\PApprovalOfPasses.xaml;Pages\PLogin.xaml;
 
 False
 

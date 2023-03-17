@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -25,14 +26,15 @@ namespace Terminal.Pages
         public PLogin()
         {
             InitializeComponent();
-            var t = new Thread(() =>
-            {
-                while (true)
-                {
-                    System.Media.SystemSounds.Asterisk.Play();
-                }
-            });
-            t.Start();
+            Refresh();
+            //var t = new Thread(() =>
+            //{
+            //    while (true)
+            //    {
+            //        System.Media.SystemSounds.Asterisk.Play();
+            //    }
+            //});
+            //t.Start();
         }
 
         private void BLogin_Click(object sender, RoutedEventArgs e)
@@ -45,6 +47,15 @@ namespace Terminal.Pages
             }
             App.LoggedEmployee = employee;
             NavigationService.Navigate(new PApprovalOfPasses(App.LoggedEmployee));
+        }
+        private void Refresh()
+        {
+            App.MainWindowInstance.BBack.Visibility = Visibility.Collapsed;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }

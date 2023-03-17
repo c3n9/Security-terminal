@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Terminal.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PLogin">
+      Title="PLogin"
+      Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel VerticalAlignment="Center"

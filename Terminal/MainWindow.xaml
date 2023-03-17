@@ -15,7 +15,7 @@
             <Image Source="/images/Logo.png"
                    Width="80"
                    Margin="10,5,10,0"/>
-            <TextBlock Text="Стражник - версия для работников"
+            <TextBlock Text="Стражник - терминал охраны"
                        FontSize="26"
                        FontFamily="Segoe UI"
                        VerticalAlignment="Center"/>

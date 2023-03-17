@@ -81,3 +81,5 @@ C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\D
 C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\Debug\Terminal.pdb
 C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\obj\Debug\AppWindows\PassEnterWindow.g.cs
 C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\obj\Debug\AppWindows\PassEnterWindow.baml
+C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\Debug\AppWindows\PassEnterWindow.g.cs
+C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\Debug\AppWindows\PassEnterWindow.baml

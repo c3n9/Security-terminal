@@ -27,12 +27,23 @@
             <TextBlock Text="Статусы"
                        x:Name="TBStatusForFilter"/>
             <ComboBox x:Name="CBStatusForFilter"
-                      DisplayMemberPath="Name" Width="200" SelectionChanged="CBStatusForFilter_SelectionChanged"/>
+                      DisplayMemberPath="Name"
+                      Width="200" 
+                      SelectionChanged="CBStatusForFilter_SelectionChanged"/>
             <TextBlock Text="Дата"/>
         </StackPanel>
         <DockPanel  Grid.Row="1"
                   Grid.Column="1">
-            <Button x:Name="BPassEnter" Content="Пропустить" Click="BPassEnter_Click" DockPanel.Dock="Bottom"/>
+            <StackPanel DockPanel.Dock="Bottom"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="center">
+                <Button x:Name="BPassEnter" 
+                        Content="Пропустить" 
+                        Click="BPassEnter_Click"/>
+                <Button x:Name="BPassExit"
+                        Content="Выпустить"
+                        Click="BPassExit_Click"/>
+            </StackPanel>
             <DataGrid x:Name="DGGuests"
                   IsReadOnly="True"
                  
@@ -80,14 +91,5 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
-
-        <!--<StackPanel Grid.Row="1" Width="200">
-            <TextBlock Text="Назначить статус"/>
-            <ComboBox x:Name="CBStatus"
-                      DisplayMemberPath="Name"/>
-            <Button x:Name="BSave"
-                                    Content="Сохранить"
-                                    Click="BSave_Click"/>
-        </StackPanel>-->
     </Grid>
 </Page>

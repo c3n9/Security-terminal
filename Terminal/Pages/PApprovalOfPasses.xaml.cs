@@ -38,56 +38,20 @@ namespace Terminal.Pages
             departments.Insert(0, new Department() { Name = "Показать всё" });
             CBDepartment.ItemsSource = departments.ToList();
             CBDepartment.SelectedIndex = 0;
-            //CBStatus.ItemsSource = App.DB.PassStatus.ToList();
-            //if (contextEmployee.DepartmentId == 7)
-            //{
-            //    CBStatus.Visibility = Visibility.Collapsed;
-            //    BSave.Visibility = Visibility.Collapsed;
-            //    CBStatusForFilter.Visibility = Visibility.Collapsed;
-            //    TBStatusForFilter.Visibility = Visibility.Collapsed;
-            //    TBSearch.Visibility = Visibility.Visible;
-            //}
-            //if(contextEmployee.DepartmentId != 7 && contextEmployee.DepartmentId != 6)
-            //{
-            //    CBStatus.Visibility = Visibility.Collapsed;
-            //    BSave.Visibility = Visibility.Collapsed;
-            //    CBStatusForFilter.Visibility = Visibility.Collapsed;
-            //    TBStatusForFilter.Visibility = Visibility.Collapsed;
-            //    TBDepartment.Visibility = Visibility.Collapsed;
-            //    TBlockSearch.Visibility = Visibility.Collapsed;
-            //    CBDepartment.Visibility = Visibility.Collapsed;
-            //    TBSearch.Visibility = Visibility.Collapsed;
-            //}
             Refresh();
-        }
-
-        private void BSave_Click(object sender, RoutedEventArgs e)
-        {
-            //var selectedGuest = DGGuests.SelectedItem as Pass;
-            //if (selectedGuest == null)
-            //{
-            //    MessageBox.Show("Выберите гостя");
-            //    return;
-            //}
-            //selectedGuest.PassStatus = CBStatus.SelectedItem as PassStatus;
-            //App.DB.SaveChanges();
-            //Refresh();
         }
         private void Refresh()
         {
+            App.MainWindowInstance.BBack.Visibility = Visibility.Visible;
             var filtred = App.DB.Pass.Where(p => p.PassStatusId == 2).ToList();
             var selectedDepartment = CBDepartment.SelectedItem as Department;
             var selectedStatus = CBStatusForFilter.SelectedItem as PassStatus;
             var searchText = TBSearch.Text.ToLower();
 
-            //if (contextEmployee.DepartmentId == 7)
-            //    filtred = filtred.Where(g => g.PassStatusId == 2).ToList();
             if (selectedDepartment != null && selectedDepartment.Id !=0)
                 filtred = filtred.Where(f => f.Employee.DepartmentId == selectedDepartment.Id).ToList();
             if (selectedStatus != null && selectedStatus.Id != 0)
                 filtred = filtred.Where(f => f.PassStatusId == selectedStatus.Id).ToList();
-            //if (contextEmployee.DepartmentId != 6 && contextEmployee.DepartmentId != 7)
-            //    filtred = filtred.Where(f => f.PassStatusId == 2 && f.Employee.DepartmentId == contextEmployee.DepartmentId).ToList();
             if (string.IsNullOrWhiteSpace(searchText) == false)
             {
                 filtred = filtred.Where(f => f.FullName.ToLower().Contains(searchText) || f.Passport.Contains(searchText)).ToList();
@@ -125,6 +89,17 @@ namespace Terminal.Pages
                 return;
             }
             new PassEnterWindow(selectedGuest).ShowDialog();
+        }
+
+        private void BPassExit_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedGuest = DGGuests.SelectedItem as Pass;
+            if(selectedGuest == null)
+            {
+                MessageBox.Show("Выберите гостя");
+                return;
+            }
+            new PassExitWindow(selectedGuest).ShowDialog();
         }
     }
 }
