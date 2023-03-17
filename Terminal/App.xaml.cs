@@ -15,6 +15,7 @@ namespace Terminal
     public partial class App : Application
     {
         public static GuardianEntities DB = new GuardianEntities();
+        public static Employee LoggedEmployee;
 
     }
 }

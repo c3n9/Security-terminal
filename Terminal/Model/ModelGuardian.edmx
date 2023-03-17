@@ -52,6 +52,16 @@
           <Property Name="DocumentFile" Type="nchar" MaxLength="10" />
           <Property Name="PassId" Type="int" />
         </EntityType>
+        <EntityType Name="PassLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PassId" Type="int" Nullable="false" />
+          <Property Name="IsEnter" Type="bit" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="PassStatus">
           <Key>
             <PropertyRef Name="Id" />
@@ -137,11 +147,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PassLog_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="PassLog" Type="Self.PassLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassLog">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassLog_Pass">
+          <End Role="Pass" Type="Self.Pass" Multiplicity="1" />
+          <End Role="PassLog" Type="Self.PassLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassLog">
+              <PropertyRef Name="PassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище GuardianModelContainer">
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pass" EntityType="Self.Pass" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassDocument" EntityType="Self.PassDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassLog" EntityType="Self.PassLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassStatus" EntityType="Self.PassStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -165,6 +200,14 @@
             <End Role="Pass" EntitySet="Pass" />
             <End Role="PassDocument" EntitySet="PassDocument" />
           </AssociationSet>
+          <AssociationSet Name="FK_PassLog_Employee" Association="Self.FK_PassLog_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="PassLog" EntitySet="PassLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassLog_Pass" Association="Self.FK_PassLog_Pass">
+            <End Role="Pass" EntitySet="Pass" />
+            <End Role="PassLog" EntitySet="PassLog" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -175,6 +218,7 @@
           <EntitySet Name="Employee" EntityType="GuardianModel.Employee" />
           <EntitySet Name="Pass" EntityType="GuardianModel.Pass" />
           <EntitySet Name="PassDocument" EntityType="GuardianModel.PassDocument" />
+          <EntitySet Name="PassLog" EntityType="GuardianModel.PassLog" />
           <EntitySet Name="PassStatus" EntityType="GuardianModel.PassStatus" />
           <EntitySet Name="sysdiagrams" EntityType="GuardianModel.sysdiagrams" />
           <EntitySet Name="User" EntityType="GuardianModel.User" />
@@ -185,6 +229,10 @@
           <AssociationSet Name="FK_Pass_Employee" Association="GuardianModel.FK_Pass_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Pass" EntitySet="Pass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassLog_Employee" Association="GuardianModel.FK_PassLog_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="PassLog" EntitySet="PassLog" />
           </AssociationSet>
           <AssociationSet Name="FK_Pass_PassStatus" Association="GuardianModel.FK_Pass_PassStatus">
             <End Role="PassStatus" EntitySet="PassStatus" />
@@ -197,6 +245,10 @@
           <AssociationSet Name="FK_PassDocument_Pass" Association="GuardianModel.FK_PassDocument_Pass">
             <End Role="Pass" EntitySet="Pass" />
             <End Role="PassDocument" EntitySet="PassDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassLog_Pass" Association="GuardianModel.FK_PassLog_Pass">
+            <End Role="Pass" EntitySet="Pass" />
+            <End Role="PassLog" EntitySet="PassLog" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Department">
@@ -217,6 +269,7 @@
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="GuardianModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Pass" Relationship="GuardianModel.FK_Pass_Employee" FromRole="Employee" ToRole="Pass" />
+          <NavigationProperty Name="PassLog" Relationship="GuardianModel.FK_PassLog_Employee" FromRole="Employee" ToRole="PassLog" />
         </EntityType>
         <EntityType Name="Pass">
           <Key>
@@ -244,6 +297,7 @@
           <NavigationProperty Name="PassStatus" Relationship="GuardianModel.FK_Pass_PassStatus" FromRole="Pass" ToRole="PassStatus" />
           <NavigationProperty Name="User" Relationship="GuardianModel.FK_Pass_User" FromRole="Pass" ToRole="User" />
           <NavigationProperty Name="PassDocument" Relationship="GuardianModel.FK_PassDocument_Pass" FromRole="Pass" ToRole="PassDocument" />
+          <NavigationProperty Name="PassLog" Relationship="GuardianModel.FK_PassLog_Pass" FromRole="Pass" ToRole="PassLog" />
         </EntityType>
         <EntityType Name="PassDocument">
           <Key>
@@ -253,6 +307,18 @@
           <Property Name="DocumentFile" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="PassId" Type="Int32" />
           <NavigationProperty Name="Pass" Relationship="GuardianModel.FK_PassDocument_Pass" FromRole="PassDocument" ToRole="Pass" />
+        </EntityType>
+        <EntityType Name="PassLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PassId" Type="Int32" Nullable="false" />
+          <Property Name="IsEnter" Type="Boolean" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="GuardianModel.FK_PassLog_Employee" FromRole="PassLog" ToRole="Employee" />
+          <NavigationProperty Name="Pass" Relationship="GuardianModel.FK_PassLog_Pass" FromRole="PassLog" ToRole="Pass" />
         </EntityType>
         <EntityType Name="PassStatus">
           <Key>
@@ -305,6 +371,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PassLog_Employee">
+          <End Type="GuardianModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="GuardianModel.PassLog" Role="PassLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassLog">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pass_PassStatus">
           <End Type="GuardianModel.PassStatus" Role="PassStatus" Multiplicity="1" />
           <End Type="GuardianModel.Pass" Role="Pass" Multiplicity="*" />
@@ -337,6 +415,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PassDocument">
+              <PropertyRef Name="PassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassLog_Pass">
+          <End Type="GuardianModel.Pass" Role="Pass" Multiplicity="1" />
+          <End Type="GuardianModel.PassLog" Role="PassLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassLog">
               <PropertyRef Name="PassId" />
             </Dependent>
           </ReferentialConstraint>
@@ -394,6 +484,17 @@
               <MappingFragment StoreEntitySet="PassDocument">
                 <ScalarProperty Name="PassId" ColumnName="PassId" />
                 <ScalarProperty Name="DocumentFile" ColumnName="DocumentFile" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassLog">
+            <EntityTypeMapping TypeName="GuardianModel.PassLog">
+              <MappingFragment StoreEntitySet="PassLog">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="IsEnter" ColumnName="IsEnter" />
+                <ScalarProperty Name="PassId" ColumnName="PassId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

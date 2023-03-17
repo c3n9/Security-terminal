@@ -18,6 +18,7 @@ namespace Terminal.Model
         public Employee()
         {
             this.Pass = new HashSet<Pass>();
+            this.PassLog = new HashSet<PassLog>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace Terminal.Model
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pass> Pass { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PassLog> PassLog { get; set; }
     }
 }

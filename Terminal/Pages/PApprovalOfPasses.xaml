@@ -10,73 +10,84 @@
       Loaded="Page_Loaded"  >
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Отделы"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="2">
+            <TextBlock Text="Фильтрация"/>
+            <TextBlock Text="Поиск"
+                       x:Name="TBlockSearch"/>
+            <TextBox x:Name="TBSearch" Width="200" TextChanged="TBSearch_TextChanged"/>
+            <TextBlock Text="Отделы"
+                       x:Name="TBDepartment"/>
             <ComboBox x:Name="CBDepartment"
                       DisplayMemberPath="Name" Width="200" SelectionChanged="CBDepartment_SelectionChanged"/>
             <TextBlock Text="Статусы"
                        x:Name="TBStatusForFilter"/>
             <ComboBox x:Name="CBStatusForFilter"
                       DisplayMemberPath="Name" Width="200" SelectionChanged="CBStatusForFilter_SelectionChanged"/>
-            <TextBlock Text="Поиск"/>
-            <TextBox x:Name="TBSearch" Width="200" TextChanged="TBSearch_TextChanged"/>
+            <TextBlock Text="Дата"/>
         </StackPanel>
-        <DataGrid x:Name="DGGuests"
+        <DockPanel  Grid.Row="1"
+                  Grid.Column="1">
+            <Button x:Name="BPassEnter" Content="Пропустить" Click="BPassEnter_Click" DockPanel.Dock="Bottom"/>
+            <DataGrid x:Name="DGGuests"
                   IsReadOnly="True"
-                  Grid.Row="1"
+                 
+                  ColumnWidth="*"
                   AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Фамилия"
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Фамилия"
                                     Binding="{Binding Surname}"/>
-                <DataGridTextColumn Header="Имя"
+                    <DataGridTextColumn Header="Имя"
                                     Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Отчество"
+                    <DataGridTextColumn Header="Отчество"
                                     Binding="{Binding Patromic}"/>
-                <DataGridTextColumn Header="Телефон"
+                    <DataGridTextColumn Header="Телефон"
                                     Binding="{Binding Phone}"/>
-                <DataGridTextColumn Header="E-mail"
+                    <DataGridTextColumn Header="E-mail"
                                     Binding="{Binding Email}"/>
-                <DataGridTextColumn Header="Организация"
+                    <DataGridTextColumn Header="Организация"
                                     Binding="{Binding Organization}"/>
-                <DataGridTextColumn Header="Примечание"
+                    <DataGridTextColumn Header="Примечание"
                                     Binding="{Binding Description}"/>
-                <DataGridTextColumn Header="Дата рождения"
+                    <DataGridTextColumn Header="Дата рождения"
                                     Binding="{Binding BirthDate}"/>
-                <DataGridTextColumn Header="Серия паспорта"
+                    <DataGridTextColumn Header="Серия паспорта"
                                     Binding="{Binding PassportSeria}"/>
-                <DataGridTextColumn Header="Номер паспорта"
+                    <DataGridTextColumn Header="Номер паспорта"
                                     Binding="{Binding PassportNumber}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Photo}"
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Photo}"
                                    Width="60"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Начало действия"
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Начало действия"
                                     Binding="{Binding DateStart}"/>
-                <DataGridTextColumn Header="Конец действия"
+                    <DataGridTextColumn Header="Конец действия"
                                     Binding="{Binding DateEnd}"/>
-                <DataGridTextColumn Header="Цель визита"
+                    <DataGridTextColumn Header="Цель визита"
                                     Binding="{Binding VisitPurpose}"/>
-                <DataGridTextColumn Header="Статус"
+                    <DataGridTextColumn Header="Статус"
                                     Binding="{Binding PassStatus.Name}"/>
-                <DataGridTextColumn Header="Подразделение"
+                    <DataGridTextColumn Header="Подразделение"
                                     Binding="{Binding Employee.Department.Name}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Grid.Row="2">
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+        <!--<StackPanel Grid.Row="1" Width="200">
+            <TextBlock Text="Назначить статус"/>
             <ComboBox x:Name="CBStatus"
                       DisplayMemberPath="Name"/>
             <Button x:Name="BSave"
                                     Content="Сохранить"
                                     Click="BSave_Click"/>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>

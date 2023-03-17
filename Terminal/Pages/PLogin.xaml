@@ -20,7 +20,7 @@
                            HorizontalAlignment="Center"/>
 
             </Border>
-            <TextBox x:Name="TBCodeEmployee"/>
+            <TextBox x:Name="TBCodeEmployee" Text="9404040"/>
             <Button x:Name="BLogin"
                     Content="Войти"
                     Click="BLogin_Click"

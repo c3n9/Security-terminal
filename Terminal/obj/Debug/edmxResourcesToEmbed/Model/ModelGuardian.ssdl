@@ -47,6 +47,16 @@
     <Property Name="DocumentFile" Type="nchar" MaxLength="10" />
     <Property Name="PassId" Type="int" />
   </EntityType>
+  <EntityType Name="PassLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PassId" Type="int" Nullable="false" />
+    <Property Name="IsEnter" Type="bit" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="PassStatus">
     <Key>
       <PropertyRef Name="Id" />
@@ -132,11 +142,36 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PassLog_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="PassLog" Type="Self.PassLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PassLog">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PassLog_Pass">
+    <End Role="Pass" Type="Self.Pass" Multiplicity="1" />
+    <End Role="PassLog" Type="Self.PassLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pass">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PassLog">
+        <PropertyRef Name="PassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище GuardianModelContainer">
     <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pass" EntityType="Self.Pass" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PassDocument" EntityType="Self.PassDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PassLog" EntityType="Self.PassLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PassStatus" EntityType="Self.PassStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -159,6 +194,14 @@
     <AssociationSet Name="FK_PassDocument_Pass" Association="Self.FK_PassDocument_Pass">
       <End Role="Pass" EntitySet="Pass" />
       <End Role="PassDocument" EntitySet="PassDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PassLog_Employee" Association="Self.FK_PassLog_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="PassLog" EntitySet="PassLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PassLog_Pass" Association="Self.FK_PassLog_Pass">
+      <End Role="Pass" EntitySet="Pass" />
+      <End Role="PassLog" EntitySet="PassLog" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

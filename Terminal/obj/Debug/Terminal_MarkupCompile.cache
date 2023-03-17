@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\App.xaml
-3-712184155
+4-1870747906
 2809586783
-18-1535803543
+20-2027052326
 181505886101
-MainWindow.xaml;Pages\PApprovalOfPasses.xaml;Pages\PLogin.xaml;
+AppWindows\PassEnterWindow.xaml;MainWindow.xaml;Pages\PApprovalOfPasses.xaml;Pages\PLogin.xaml;
 
 False
 

@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AppWindows\PassEnterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,6 +75,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppWindows\PassEnterWindow.xaml.cs">
+      <DependentUpon>PassEnterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -112,6 +119,9 @@
       <DependentUpon>ModelGuardian.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PassDocument.cs">
+      <DependentUpon>ModelGuardian.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PassLog.cs">
       <DependentUpon>ModelGuardian.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PassStatus.cs">

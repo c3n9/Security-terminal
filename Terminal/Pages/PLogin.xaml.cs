@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,18 +25,26 @@ namespace Terminal.Pages
         public PLogin()
         {
             InitializeComponent();
+            var t = new Thread(() =>
+            {
+                while (true)
+                {
+                    System.Media.SystemSounds.Asterisk.Play();
+                }
+            });
+            t.Start();
         }
 
         private void BLogin_Click(object sender, RoutedEventArgs e)
         {
             var employee = App.DB.Employee.FirstOrDefault(c => c.Code == TBCodeEmployee.Text);
-            if (employee == null)
+            if (employee == null || employee.DepartmentId != 7)
             {
                 MessageBox.Show("Неверный код");
                 return;
             }
-            if(employee.DepartmentId == 6 || employee.DepartmentId == 7)
-                NavigationService.Navigate(new PApprovalOfPasses(employee));
+            App.LoggedEmployee = employee;
+            NavigationService.Navigate(new PApprovalOfPasses(App.LoggedEmployee));
         }
     }
 }

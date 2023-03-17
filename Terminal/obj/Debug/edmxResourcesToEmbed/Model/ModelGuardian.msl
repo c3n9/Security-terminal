@@ -52,6 +52,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PassLog">
+      <EntityTypeMapping TypeName="GuardianModel.PassLog">
+        <MappingFragment StoreEntitySet="PassLog">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="IsEnter" ColumnName="IsEnter" />
+          <ScalarProperty Name="PassId" ColumnName="PassId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PassStatus">
       <EntityTypeMapping TypeName="GuardianModel.PassStatus">
         <MappingFragment StoreEntitySet="PassStatus">

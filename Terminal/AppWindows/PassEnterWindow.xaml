@@ -1,0 +1,17 @@
+﻿<Window x:Class="Terminal.AppWindows.PassEnterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Terminal.AppWindows"
+        mc:Ignorable="d"
+        Title="PassEnterWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="{Binding FullName, StringFormat='Вы действительно хотите впустить {0}?'}"/>
+            <TextBlock Text="{Binding VisitPurpose, StringFormat='Цель посещения: {0}'}"/>
+            <Button x:Name="BAgree" Content="Да" Click="BAgree_Click" IsDefault="True" />
+            <Button x:Name="BCancel" Content="Нет" Click="BCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

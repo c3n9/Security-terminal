@@ -79,3 +79,5 @@ C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\D
 C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\Debug\Terminal.csproj.CopyComplete
 C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\Debug\Terminal.exe
 C:\Users\quart\OneDrive\Рабочий стол\guardian\Session2\Terminal\obj\Debug\Terminal.pdb
+C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\obj\Debug\AppWindows\PassEnterWindow.g.cs
+C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\obj\Debug\AppWindows\PassEnterWindow.baml

@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\quart\source\repos\Terminal\Terminal\Model\ModelGuardian.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\progWeb\Desktop\Стражник\Session2\Terminal\Model\ModelGuardian.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
