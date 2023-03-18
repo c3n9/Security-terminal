@@ -33,7 +33,7 @@ namespace Terminal.AppWindows
             var passLog = new PassLog() { Pass = contextPass, IsEnter = true, DateTime = DateTime.Now, Employee = App.LoggedEmployee};
             App.DB.PassLog.Add(passLog);
             App.DB.SaveChanges();
-            System.Media.SystemSounds.Asterisk.Play();
+            System.Media.SystemSounds.Beep.Play();
             this.DialogResult = true;
         }
 

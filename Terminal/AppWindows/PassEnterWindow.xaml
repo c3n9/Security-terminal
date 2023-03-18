@@ -10,8 +10,24 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="{Binding FullName, StringFormat='Вы действительно хотите впустить {0}?'}"/>
             <TextBlock Text="{Binding VisitPurpose, StringFormat='Цель посещения: {0}'}"/>
-            <Button x:Name="BAgree" Content="Да" Click="BAgree_Click" IsDefault="True" />
-            <Button x:Name="BCancel" Content="Нет" Click="BCancel_Click"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,10,0,0">
+                <Button x:Name="BAgree" Content="Да" 
+                        Click="BAgree_Click" 
+                        IsDefault="True"
+                        BorderBrush="#ff9619"
+                        BorderThickness="2"
+                        Background="White"
+                        Width="100"/>
+                <Button x:Name="BCancel" 
+                        Content="Нет" 
+                        Click="BCancel_Click"
+                        BorderBrush="#ff9619"
+                        BorderThickness="2"
+                        Background="White"
+                        Width="100"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

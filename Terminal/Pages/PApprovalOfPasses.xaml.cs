@@ -47,15 +47,14 @@ namespace Terminal.Pages
             var selectedDepartment = CBDepartment.SelectedItem as Department;
             var selectedStatus = CBStatusForFilter.SelectedItem as PassStatus;
             var searchText = TBSearch.Text.ToLower();
-
             if (selectedDepartment != null && selectedDepartment.Id !=0)
                 filtred = filtred.Where(f => f.Employee.DepartmentId == selectedDepartment.Id).ToList();
             if (selectedStatus != null && selectedStatus.Id != 0)
                 filtred = filtred.Where(f => f.PassStatusId == selectedStatus.Id).ToList();
+            if (DPDateForFIlter.SelectedDate != null)
+                filtred = filtred.Where(f => f.DateStart == DPDateForFIlter.SelectedDate.Value).ToList();
             if (string.IsNullOrWhiteSpace(searchText) == false)
-            {
                 filtred = filtred.Where(f => f.FullName.ToLower().Contains(searchText) || f.Passport.Contains(searchText)).ToList();
-            }
 
             DGGuests.ItemsSource = filtred.ToList();
         }
@@ -100,6 +99,11 @@ namespace Terminal.Pages
                 return;
             }
             new PassExitWindow(selectedGuest).ShowDialog();
+        }
+
+        private void DPDateForFIlter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh();
         }
     }
 }

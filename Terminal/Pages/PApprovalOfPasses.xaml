@@ -19,7 +19,10 @@
             <TextBlock Text="Фильтрация"/>
             <TextBlock Text="Поиск"
                        x:Name="TBlockSearch"/>
-            <TextBox x:Name="TBSearch" Width="200" TextChanged="TBSearch_TextChanged"/>
+            <TextBox x:Name="TBSearch" 
+                     Width="200" 
+                     TextChanged="TBSearch_TextChanged"
+                     MaxLength="150"/>
             <TextBlock Text="Отделы"
                        x:Name="TBDepartment"/>
             <ComboBox x:Name="CBDepartment"
@@ -28,9 +31,11 @@
                        x:Name="TBStatusForFilter"/>
             <ComboBox x:Name="CBStatusForFilter"
                       DisplayMemberPath="Name"
-                      Width="200" 
+                      Width="200"
                       SelectionChanged="CBStatusForFilter_SelectionChanged"/>
             <TextBlock Text="Дата"/>
+            <DatePicker x:Name="DPDateForFIlter"
+                        SelectedDateChanged="DPDateForFIlter_SelectedDateChanged"/>
         </StackPanel>
         <DockPanel  Grid.Row="1"
                   Grid.Column="1">
@@ -39,16 +44,23 @@
                         HorizontalAlignment="center">
                 <Button x:Name="BPassEnter" 
                         Content="Пропустить" 
-                        Click="BPassEnter_Click"/>
+                        Click="BPassEnter_Click"
+                        Background="White"
+                        BorderBrush="#ff9619"
+                        BorderThickness="2"
+                        Width="200"/>
                 <Button x:Name="BPassExit"
                         Content="Выпустить"
-                        Click="BPassExit_Click"/>
+                        Click="BPassExit_Click"
+                        Background="White"
+                        BorderBrush="#ff9619"
+                        BorderThickness="2"
+                        Width="200"/>
             </StackPanel>
             <DataGrid x:Name="DGGuests"
-                  IsReadOnly="True"
-                 
-                  ColumnWidth="*"
-                  AutoGenerateColumns="False">
+                      IsReadOnly="True"
+                      ColumnWidth="*"
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Фамилия"
                                     Binding="{Binding Surname}"/>
@@ -70,7 +82,7 @@
                                     Binding="{Binding PassportSeria}"/>
                     <DataGridTextColumn Header="Номер паспорта"
                                     Binding="{Binding PassportNumber}"/>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Фото">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Photo}"

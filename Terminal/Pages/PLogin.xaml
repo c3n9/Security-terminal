@@ -19,7 +19,6 @@
                     Margin="0,0,0,10">
                 <TextBlock Text="Вход в систему по коду"
                            HorizontalAlignment="Center"/>
-
             </Border>
             <TextBox x:Name="TBCodeEmployee" Text="9404040"/>
             <Button x:Name="BLogin"
