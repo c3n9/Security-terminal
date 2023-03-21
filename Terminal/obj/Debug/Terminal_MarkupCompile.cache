@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Asus\OneDrive\Рабочий стол\Guardian\Security-terminal\Terminal\obj\Debug\
+C:\Users\quart\OneDrive\Рабочий стол\guardian\Security-terminal\Terminal\obj\Debug\
 Terminal
 none
 false
 DEBUG;TRACE
-C:\Users\Asus\OneDrive\Рабочий стол\Guardian\Security-terminal\Terminal\App.xaml
+C:\Users\quart\OneDrive\Рабочий стол\guardian\Security-terminal\Terminal\App.xaml
 5840792531
 2809586783
 21-1545756539
-18-243868237
+18-519115927
 AppWindows\PassEnterWindow.xaml;AppWindows\PassExitWindow.xaml;MainWindow.xaml;Pages\PApprovalOfPasses.xaml;Pages\PLogin.xaml;
 
 False

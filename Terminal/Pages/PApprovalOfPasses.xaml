@@ -37,8 +37,7 @@
             <DatePicker x:Name="DPDateForFIlter"
                         SelectedDateChanged="DPDateForFIlter_SelectedDateChanged"/>
         </StackPanel>
-        <DockPanel  Grid.Row="1"
-                  Grid.Column="1">
+        <DockPanel Grid.Column="1">
             <StackPanel DockPanel.Dock="Bottom"
                         Orientation="Horizontal"
                         HorizontalAlignment="center">
